@@ -9,6 +9,7 @@ import time
 
 
 def get_sert_exp_date(utm_url, sert_type):
+    """ get date from url """
     try:
         page = urllib.request.urlopen(utm_url)
     except urllib.error.URLError as e:
@@ -24,6 +25,7 @@ def get_sert_exp_date(utm_url, sert_type):
 
 
 def date_to_epoch(sert_date):
+    """Convert date to epoch"""
     pattern = '%Y-%m-%d %H:%M:%S'
     return int(time.mktime(time.strptime(sert_date, pattern)))
 
