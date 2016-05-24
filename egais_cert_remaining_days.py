@@ -31,6 +31,9 @@ def date_to_epoch(d):
 
 
 if __name__ == '__main__':
+    '''Возвращает количество дней, до завершения дейтсвия сертификата
+Первый параметр адрес хоста
+Второй параметр тип сертификата: ГОСТ или PKI'''
     if sys.argv[1] and sys.argv[2]:
         sert_date = get_cert_end_date("http://%s:8080" % sys.argv[1], sys.argv[2])
         if sert_date:
