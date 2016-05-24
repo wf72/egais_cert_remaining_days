@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
@@ -35,6 +35,7 @@ if __name__ == '__main__':
 Первый параметр адрес хоста
 Второй параметр тип сертификата: ГОСТ или PKI'''
     if sys.argv[1] and sys.argv[2]:
-        sert_date = get_cert_end_date("http://%s:8080" % sys.argv[1], sys.argv[2])
+        sert_type = "ГОСТ" if sys.argv[2] == "GOST" else sys.argv[2]
+        sert_date = get_cert_end_date("http://%s:8080" % sys.argv[1], sert_type)
         if sert_date:
             print(int((date_to_epoch(sert_date) - int(time.time()))/86400))
