@@ -9,7 +9,7 @@ import time
 
 
 def get_cert_end_date(utm_url, sert_type):
-    """ get date from url """
+    """get date from url"""
     try:
         page = urllib.request.urlopen(utm_url)
     except urllib.error.URLError as e:
