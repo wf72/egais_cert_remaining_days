@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
@@ -15,13 +15,11 @@ def get_cert_end_date(utm_url, sert_type):
     except urllib.error.URLError as e:
         print(e)
         return None
-    soup = BeautifulSoup(page.read())
-    for pre in soup.find_all('pre'):
-        for s in pre.stripped_strings:
-            pattern = "%s\:.+по ([0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2})" % sert_type
-            m = re.search(pattern, s)
-            if m:
-                return m.group(1)
+    soup = BeautifulSoup(page.read(), "html.parser")
+    pattern = "%s.+по ([0-9]{4}\-[0-9]{2}\-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2})" % sert_type
+    m = re.search(pattern, soup.text)
+    if m:
+        return m.group(1)
 
 
 def date_to_epoch(d):
